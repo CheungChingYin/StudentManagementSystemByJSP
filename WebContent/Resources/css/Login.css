@@ -1,0 +1,64 @@
+body{
+	text-align: center;
+	background-image: url(../Images/login-background.svg);
+}
+
+h2{
+	padding-top: 30px;
+	text-align: center;
+}
+
+#bg{
+	width: 1920px;
+	height: 1080px;
+}
+
+
+#whiteblock{
+	width: 600px;
+	height: 400px;
+	margin: 0 auto;
+	background-color: white;
+	text-align: center;
+	background: hsla(0,0%,100%,.3);
+	border-radius:20px ;
+	position: absolute;  
+    top: 50%;  
+    left: 50%;  
+    overflow: hidden;  
+    margin-top: -100px;  
+    margin-left: -350px;  
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);  
+    z-index: 100;  
+    padding: 50px;  
+    box-sizing: border-box; 
+}
+
+input{
+	width: 200px;
+	height: 20px;
+}
+
+p{
+	margin-top: 40px;
+}
+
+#put{
+	width: 100px;
+	height: 40px;
+	margin: 30px;
+	font: "微软雅黑";
+	
+}
+option{
+	font-size: 40px;
+}
+
+.user{
+	height: 40px;
+	margin-top: 20px;
+	margin-left: 90px;
+	border-radius: 10px;
+}
+
+
