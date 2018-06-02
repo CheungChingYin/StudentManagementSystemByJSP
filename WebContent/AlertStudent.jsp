@@ -106,7 +106,7 @@
 				</div>
 			<div class="form-group form-inline">
 				<label for="name">姓名:</label>
-					<input type="text" class="form-control" id="name" name="name" value='<%=name %>' required="required">
+					<input type="text" class="form-control" id="name" name="name" maxlength="15" value='<%=name %>' required="required">
 				</div>
 				<div class="form-group form-inline">
 					<label for="sex">性别:</label>

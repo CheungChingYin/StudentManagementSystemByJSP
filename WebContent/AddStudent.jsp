@@ -61,7 +61,7 @@
 			<form action="DaoAddStudent.jsp" method="post">
 				<div class="form-group form-inline">
 					<label for="id">学号:</label>
-				<input type="text" class="form-control" id="id" name="id" required="required">
+				<input type="text" class="form-control" id="id" name="id" maxlength="15" required="required">
 				</div>
 			<div class="form-group form-inline">
 				<label for="name">姓名:</label>

@@ -14,6 +14,7 @@ if((String)session.getAttribute("user")==null){
 %>
 <%
 	session.removeAttribute("user");
+	session.removeAttribute("id");
 	out.print("<script type='text/javascript'>alert('用户退出成功!');window.location.href='Login.html';</script>");
 %>
 </body>

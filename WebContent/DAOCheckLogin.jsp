@@ -25,6 +25,7 @@
 		ResultSet rs = sql.executeQuery(sqlQuery);
 		if(rs.next()){
 			session.setAttribute("user", user);
+			session.setAttribute("id", rs.getString(1));
 			response.sendRedirect("frame.jsp");
 		}else{
 			out.print("<script language='JavaScript'>alert('您的用户名或密码有误，请重新输入或者注册');window.location.href='Login.html'</script>");
