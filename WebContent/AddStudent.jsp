@@ -52,6 +52,11 @@
 	</head>
 
 	<body>
+	<%
+		if((String)session.getAttribute("user")==null){
+			out.print("<script language='JavaScript'>alert('请先登录！');window.location.href='Login.html'</script>");
+		}
+	%>
 		<div class="contain">
 			<form action="DaoAddStudent.jsp" method="post">
 				<div class="form-group form-inline">

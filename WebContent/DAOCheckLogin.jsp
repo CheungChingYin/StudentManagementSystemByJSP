@@ -13,6 +13,7 @@
 </head>
 <body>
 <%
+
 	request.setCharacterEncoding("UTF-8");
 	String user = request.getParameter("user");
 	String password = request.getParameter("password");

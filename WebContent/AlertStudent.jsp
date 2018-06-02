@@ -67,6 +67,11 @@
 		String major;
 	%>
 	<%
+	
+		if((String)session.getAttribute("user")==null){
+			out.print("<script language='JavaScript'>alert('请先登录！');window.location.href='Login.html'</script>");
+		}
+	
 		request.setCharacterEncoding("UTF-8");
 		id = request.getParameter("id");
 		String sqlid = "SELECT * FROM stumanagementbyweb.studentinfo where id='"+id+"'";

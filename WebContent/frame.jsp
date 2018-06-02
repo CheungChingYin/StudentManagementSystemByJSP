@@ -6,6 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<%
+if((String)session.getAttribute("user")==null){
+	out.print("<script language='JavaScript'>alert('请先登录！');window.location.href='Login.html'</script>");
+}
+%>
 <frameset rows="10%,*" frameborder="0" framespacing="10">
 		<frame src="Top.jsp" noresize="noresize" scrolling="yes" />
 		<frameset cols="30%,*">

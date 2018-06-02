@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+if((String)session.getAttribute("user")==null){
+	out.print("<script language='JavaScript'>alert('请先登录！');window.location.href='Login.html'</script>");
+}
+%>
 <%=session.getAttribute("user") %>，你好，登录成功！
 </body>
 </html>

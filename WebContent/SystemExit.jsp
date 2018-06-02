@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%
+if((String)session.getAttribute("user")==null){
+	out.print("<script language='JavaScript'>alert('请先登录！');window.location.href='Login.html'</script>");
+}
+%>
+<%
+	session.removeAttribute("user");
+	out.print("<script type='text/javascript'>alert('用户退出成功!');window.location.href='Login.html';</script>");
+%>
 </body>
 </html>

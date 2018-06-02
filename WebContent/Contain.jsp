@@ -80,7 +80,7 @@
 			</form>
 			<a href="AddStudent.jsp" target="_self"><button class="btn btn-primary add">添加学生资料</button></a>
 			<div class="pull-left">
-				<table class="table">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>学号</th>
