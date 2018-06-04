@@ -60,7 +60,7 @@
 			ps.setString(7,college);
 			ps.setString(8,sourceId);
 			ps.executeUpdate();
-			out.print("<script type='text/javascript'>alert('更改学生信息成功!');window.location.href='Contain.jsp';</script>");
+			out.print("<script type='text/javascript'>alert('更改学生信息成功!');window.location.href='Contain.jsp?pages=1';</script>");
 			ps.close();
 		}
 		rs.close();

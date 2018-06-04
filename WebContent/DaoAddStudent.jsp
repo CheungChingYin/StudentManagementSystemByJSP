@@ -52,7 +52,7 @@
 			ps.setString(6,major);
 			ps.setString(7,college);
 			ps.executeUpdate();
-			out.print("<script type='text/javascript'>alert('添加学生信息成功!');window.location.href='Contain.jsp';</script>");
+			out.print("<script type='text/javascript'>alert('添加学生信息成功!');window.location.href='Contain.jsp?pages=1';</script>");
 			ps.close();
 		}
 		rs.close();

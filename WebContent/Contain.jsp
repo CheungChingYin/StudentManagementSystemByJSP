@@ -65,10 +65,18 @@
 				float: right;
 				margin-right: 50px;
 			}
+			.pageNav{
+				margin-left: 200px;
+			}
 		</style>
 	</head>
 
 	<body>
+		<%
+		request.setCharacterEncoding("UTF-8");
+		String pages = request.getParameter("pages");
+		int startLine = (Integer.parseInt(pages)-1)*10;
+		%>
 		<div class="contain pull-left">
 			<form action="DaoSearch.jsp" class="form-inline ">
 				<h2>学生名单管理</h2>
@@ -94,14 +102,21 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%
-	request.setCharacterEncoding("UTF-8");
-	String sqlQuery = "SELECT * FROM stumanagementbyweb.studentinfo";
+<%
+	int pageSize = 10;
+	String sqlQuery = "SELECT * FROM stumanagementbyweb.studentinfo limit "+startLine+","+pageSize;
+	String sqlAll = "SELECT * FROM stumanagementbyweb.studentinfo";
+	int pagesCount = 0;
+	int lastRow = 0;
 	try{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/stumanagementbyweb","root","123456");
 		Statement sql = con.createStatement();
+		Statement stat = con.createStatement();
 		ResultSet rs = sql.executeQuery(sqlQuery);
+		ResultSet rsAll = stat.executeQuery(sqlAll);
+		rsAll.last();
+		lastRow = rsAll.getRow();//记录最后一行
 		while(rs.next()){
 			out.print("<tr>");
 			out.print("<td>"+rs.getString(1)+"</td>");
@@ -122,6 +137,37 @@
 
 					</tbody>
 				</table>
+				<div class="pageNav">
+					<ul class="pagination">
+					<%
+						int prePage;
+						if(pages.equals("1")){
+							prePage = 1;
+						}else{
+							prePage = Integer.parseInt(pages)-1;
+						}
+					%>
+					<li class="page-item"><a class="page-link" href="Contain.jsp?pages=<%=prePage%>">Previous</a></li>
+					<%
+						pagesCount = (lastRow % pageSize == 0) ? (lastRow / pageSize) : (lastRow / pageSize +1);
+						for(int i = 1;i<=pagesCount;i++){
+							out.print("<li class='page-item'>");
+							out.print("<a class='page-link' href='Contain.jsp?pages="+i+"'>"+i+"</a>");
+							out.print("</li>");
+						}
+					%>
+					<%
+						int nextPage;
+						if(pages.equals(pagesCount+"")){
+							nextPage = pagesCount;
+						}else{
+							nextPage = Integer.parseInt(pages)+1;
+						}
+					%>
+					<li class="page-item"><a class="page-link" href="Contain.jsp?pages=<%=nextPage%>">Next</a></li>
+					</ul>
+				</div>
+
 			</div>
 
 		</div>

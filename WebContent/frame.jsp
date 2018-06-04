@@ -15,7 +15,7 @@ if((String)session.getAttribute("user")==null){
 		<frame src="Top.jsp" noresize="noresize" scrolling="yes" />
 		<frameset cols="30%,*">
 			<frame src="Left_nav.html" noresize="noresize" />
-			<frame src="Contain.jsp" name="contain" />
+			<frame src="Contain.jsp?pages=1" name="contain" />
 		</frameset>
 	</frameset>
 </html>

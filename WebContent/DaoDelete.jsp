@@ -27,7 +27,7 @@
 		ps = con.prepareStatement(sql);
 		ps.setString(1, id);
 		ps.executeUpdate();
-		out.print("<script type='text/javascript'>alert('删除学生信息成功!');window.location.href='Contain.jsp';</script>");
+		out.print("<script type='text/javascript'>alert('删除学生信息成功!');window.location.href='Contain.jsp?pages=1';</script>");
 		ps.close();
 		con.close();
 	}catch(Exception e){
