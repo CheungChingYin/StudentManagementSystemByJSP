@@ -75,6 +75,7 @@
 		<%
 		request.setCharacterEncoding("UTF-8");
 		String pages = request.getParameter("pages");
+		int pagesNo = Integer.parseInt(pages);
 		int startLine = (Integer.parseInt(pages)-1)*10;
 		%>
 		<div class="contain pull-left">
@@ -141,30 +142,43 @@
 					<ul class="pagination">
 					<%
 						int prePage;
-						if(pages.equals("1")){
+						if(pagesNo == 1){
 							prePage = 1;
 						}else{
-							prePage = Integer.parseInt(pages)-1;
+							prePage = pagesNo - 1;
 						}
 					%>
-					<li class="page-item"><a class="page-link" href="Contain.jsp?pages=<%=prePage%>">Previous</a></li>
+					<li class="page-item"><a class="page-link" href="Contain.jsp?pages=<%=prePage%>">上一页</a></li>
 					<%
 						pagesCount = (lastRow % pageSize == 0) ? (lastRow / pageSize) : (lastRow / pageSize +1);
-						for(int i = 1;i<=pagesCount;i++){
-							out.print("<li class='page-item'>");
-							out.print("<a class='page-link' href='Contain.jsp?pages="+i+"'>"+i+"</a>");
-							out.print("</li>");
+						int minpages = (pagesNo - 3 >0) ? (pagesNo - 3) : 1;
+						int maxpages = (pagesNo + 3 >= pagesCount) ? (pagesCount) : (pagesNo+3);
+						for(int i = minpages;i <=maxpages ;i++){
+							if(i == pagesNo){
+								out.print("<li class='page-item active'>");
+								out.print("<a class='page-link' href='Contain.jsp?pages="+i+"'>"+i+"</a>");
+								out.print("</li>");
+							}else{
+								out.print("<li class='page-item'>");
+								out.print("<a class='page-link' href='Contain.jsp?pages="+i+"'>"+i+"</a>");
+								out.print("</li>");
+							}
+							
 						}
+							//out.print("<li class='page-item'>");
+							//out.print("<a class='page-link' href='#>...</a>");
+							//out.print("</li>");
+						
 					%>
 					<%
 						int nextPage;
-						if(pages.equals(pagesCount+"")){
+						if(pagesNo == pagesCount){
 							nextPage = pagesCount;
 						}else{
-							nextPage = Integer.parseInt(pages)+1;
+							nextPage = pagesNo + 1;
 						}
 					%>
-					<li class="page-item"><a class="page-link" href="Contain.jsp?pages=<%=nextPage%>">Next</a></li>
+					<li class="page-item"><a class="page-link" href="Contain.jsp?pages=<%=nextPage%>">下一页</a></li>
 					</ul>
 				</div>
 
