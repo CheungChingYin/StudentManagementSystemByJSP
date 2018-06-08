@@ -95,7 +95,7 @@
 					</thead>
 					<tbody>
 	<%
-	
+	//查询功能
 	if((String)session.getAttribute("user")==null){
 		out.print("<script language='JavaScript'>alert('请先登录！');window.location.href='Login.html'</script>");
 	}

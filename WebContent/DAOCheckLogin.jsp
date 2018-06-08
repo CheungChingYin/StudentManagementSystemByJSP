@@ -13,7 +13,7 @@
 </head>
 <body>
 <%
-
+	//检验管理员的用户名密码是否正确
 	request.setCharacterEncoding("UTF-8");
 	String user = request.getParameter("user");
 	String password = request.getParameter("password");

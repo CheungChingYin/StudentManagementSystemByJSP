@@ -74,9 +74,9 @@
 	<body>
 		<%
 		request.setCharacterEncoding("UTF-8");
-		String pages = request.getParameter("pages");
-		int pagesNo = Integer.parseInt(pages);
-		int startLine = (Integer.parseInt(pages)-1)*10;
+		String pages = request.getParameter("pages");//获取当前页数
+		int pagesNo = Integer.parseInt(pages);//把当前页数从字符串转为整型
+		int startLine = (Integer.parseInt(pages)-1)*10;//指定数据库从哪一行开始读取
 		%>
 		<div class="contain pull-left">
 			<form action="DaoSearch.jsp" class="form-inline ">
@@ -104,11 +104,11 @@
 					</thead>
 					<tbody>
 <%
-	int pageSize = 10;
-	String sqlQuery = "SELECT * FROM stumanagementbyweb.studentinfo limit "+startLine+","+pageSize;
+	int pageSize = 10;//指定数据库一次读取多少行
+	String sqlQuery = "SELECT * FROM stumanagementbyweb.studentinfo limit "+startLine+","+pageSize;//对数据库进行伪分页读取，一次只能读10行
 	String sqlAll = "SELECT * FROM stumanagementbyweb.studentinfo";
-	int pagesCount = 0;
-	int lastRow = 0;
+	int pagesCount = 0;//用于数据库最后读出所有行后总共有多少页
+	int lastRow = 0;//记录数据库的最后一行
 	try{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/stumanagementbyweb","root","123456");
@@ -117,7 +117,7 @@
 		ResultSet rs = sql.executeQuery(sqlQuery);
 		ResultSet rsAll = stat.executeQuery(sqlAll);
 		rsAll.last();
-		lastRow = rsAll.getRow();//记录最后一行
+		lastRow = rsAll.getRow();//记录数据库最后一行
 		while(rs.next()){
 			out.print("<tr>");
 			out.print("<td>"+rs.getString(1)+"</td>");
@@ -141,24 +141,24 @@
 				<div class="pageNav">
 					<ul class="pagination">
 					<%
-						int prePage;
+						int prePage;//上一页的页数
 						if(pagesNo == 1){
-							prePage = 1;
+							prePage = 1;//若当前页是第一页，则第一页只能是当前页
 						}else{
-							prePage = pagesNo - 1;
+							prePage = pagesNo - 1;//除了上述情况外上一页等于当前页-1页
 						}
 					%>
 					<li class="page-item"><a class="page-link" href="Contain.jsp?pages=<%=prePage%>">上一页</a></li>
 					<%
-						pagesCount = (lastRow % pageSize == 0) ? (lastRow / pageSize) : (lastRow / pageSize +1);
-						int minpages = (pagesNo - 3 >0) ? (pagesNo - 3) : 1;
-						int maxpages = (pagesNo + 3 >= pagesCount) ? (pagesCount) : (pagesNo+3);
+						pagesCount = (lastRow % pageSize == 0) ? (lastRow / pageSize) : (lastRow / pageSize +1);//计算数据库能读出来的全部页数
+						int minpages = (pagesNo - 3 >0) ? (pagesNo - 3) : 1;//设定最小页，防止页数小于第一页
+						int maxpages = (pagesNo + 3 >= pagesCount) ? (pagesCount) : (pagesNo+3);//设定最大页
 						for(int i = minpages;i <=maxpages ;i++){
-							if(i == pagesNo){
+							if(i == pagesNo){//当前页和遍历出来的页数相等时，需要通过调用css里面的样式“active"进行高亮
 								out.print("<li class='page-item active'>");
 								out.print("<a class='page-link' href='Contain.jsp?pages="+i+"'>"+i+"</a>");
 								out.print("</li>");
-							}else{
+							}else{//输出每一个分页
 								out.print("<li class='page-item'>");
 								out.print("<a class='page-link' href='Contain.jsp?pages="+i+"'>"+i+"</a>");
 								out.print("</li>");
@@ -172,7 +172,7 @@
 					%>
 					<%
 						int nextPage;
-						if(pagesNo == pagesCount){
+						if(pagesNo == pagesCount){//下一页的原理和上一页同理
 							nextPage = pagesCount;
 						}else{
 							nextPage = pagesNo + 1;

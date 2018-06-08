@@ -11,6 +11,7 @@
 </head>
 <body>
 <%
+	//修改管理员的密码
 	String user = session.getAttribute("user").toString();
 	String id = session.getAttribute("id").toString();
 	String passowrd = request.getParameter("pwd");
@@ -26,7 +27,7 @@
 		ps.executeUpdate();
 		ps.close();
 		con.close();
-		session.removeAttribute("user");
+		session.removeAttribute("user");//移除用户会话
 		session.removeAttribute("id");
 		out.print("<script type='text/javascript'>alert('更改密码成功!请重新登录!');window.parent.frames.location.href='Login.html';</script>");
 	}catch(Exception e){
